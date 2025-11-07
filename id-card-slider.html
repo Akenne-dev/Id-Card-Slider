@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Card Slider</title>
+  <link rel="shortcut icon"
+    href="https://www.shutterstock.com/image-vector/modern-blue-id-card-design-260nw-2448738035.jpg"
+    type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(195deg, #bbcddf, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: linear-gradient(195deg, #ffffff, #bbcddf);
+      width: 500px;
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px gray;
+      transition: 0.3s ease;
+    }
+
+    .card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10%;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.305);
+
+    }
+
+    .name {
+      font-weight: bold;
+      margin: 13px 0 8px 0;
+      font-size: 19px;
+    }
+
+    .job {
+      color: black;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .gender {
+      color: black;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .email {
+      color: blue;
+      font-size: 16px;
+      word-wrap: break-word;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+
+    button {
+      padding: 8px 16px;
+      border: 5px solid;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #547da5;
+      background: white;
+      animation: borderFlow 4s linear infinite;
+      display: flex;
+      align-items: center;
+    }
+
+    @keyframes borderFlow {
+      0% {
+        border-color: #c683b3;
+      }
+
+      25% {
+        border-color: #a6c1ee;
+      }
+
+      50% {
+        border-color: #89f7fe;
+      }
+
+      75% {
+        border-color: #66a6ff;
+      }
+
+      100% {
+        border-color: #fbc2eb;
+      }
+    }
+
+
+
+    button:hover {
+      background-color: rgb(191, 218, 218);
+    }
+
+    @media (max-width: 570px) {
+      .card {
+        width: 300px;
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .card img {
+        width: 110px;
+        height: 100px;
+
+      }
+
+      button {
+        padding: 4px 8px;
+        color: #547da5;
+        font-size: 15px;
+
+      }
+    }
+
+    @media (max-width: 352px) {
+      .card {
+        width: 200px;
+        padding: 20px;
+      }
+
+      .card img {
+        width: 70px;
+        height: 60px;
+      }
+
+      button {
+        padding: 3px 7px;
+        font-size: 15px;
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>ID Card Slider</h1>
+  <div class="card" id="card">
+    <img id="photo" src="" alt="Photo">
+    <div class="name" id="name"></div>
+    <div class="gender" id="gender"></div>
+    <div class="job" id="job"></div>
+    <div class="email" id="email"></div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="previous()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+        width="24px" fill="#547da5">
+        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+      </svg> Previous</button>
+    <button onclick="next()">Next <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+        width="24px" fill="#547da5">
+        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+      </svg></button>
+  </div>
+</body>
+
+</html>
+
+<script>
+  const people = [
+    { name: "Kadri Kehinde", job: "Web Developer", gender: "Female", email: "fumilolakadri@gmail.com", photo: " IMG_0137.JPG" },
+    { name: "Nwamini Chukwudi", job: "Youtuber", gender: "Male", email: "waterfred980@gmail.com", photo: "https://pbs.twimg.com/ext_tw_video_thumb/1897369309447352322/pu/img/nnwk4fSzmdLFBgLB.jpg" },
+    { name: "Habibi S", job: "HR", gender: "Male", email: "habibi@yahoo.com", photo: "https://i.pravatar.cc/150?img=8" },
+    { name: "Amirah L", job: "Graphics Designer", gender: "Female", email: "amirah@gmail.com", photo: "https://i.pravatar.cc/150?img=9" },
+    { name: "Delroy Ifeoluwa", job: "Manager", gender: "Male", email: "delroy@gmail.com", photo: "https://i.pravatar.cc/150?img=4" },
+    { name: "Funke A", job: "Senior Developer", gender: "Female", email: "funke@yahoo.com", photo: "https://i.pravatar.cc/150?img=19" },
+    { name: "Gideon Samuel", job: "Marketer", gender: "Male", email: "gideon@gmail.com", photo: "https://i.pravatar.cc/150?img=7" },
+    { name: "Oprah Brown", job: "Tester", gender: "Female", email: "brown@yahoo.com", photo: "https://i.pravatar.cc/150?img=5" },
+    { name: "Jade O", job: "Intern", gender: "Female", email: "jade@gmail.com", photo: "https://i.pravatar.cc/150?img=10" },
+    { name: "Doe Jane", job: "Frontend Dev", gender: "Female", email: "jane@yahoo.com", photo: "https://i.pravatar.cc/150?img=21" }
+  ];
+
+
+
+  let index = 0;
+
+  function showCard() {
+    document.getElementById("photo").src = people[index].photo;
+    document.getElementById("name").textContent = people[index].name;
+    document.getElementById("job").textContent = people[index].job;
+    document.getElementById("email").textContent = people[index].email;
+    document.getElementById("gender").textContent = people[index].gender;
+  }
+
+  showCard();
+
+  function next() {
+    index++;
+    if (index >= people.length) {
+      index = 0;
+    }
+    showCard();
+  }
+
+  function previous() {
+    index--;
+    if (index < 0) {
+      index = people.length - 1;
+    }
+    showCard();
+  }
+
+</script>
